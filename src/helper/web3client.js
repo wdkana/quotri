@@ -17,7 +17,10 @@ export const init = async () => {
         current_account = accounts[0];
       })
       .catch((err) => {
-        console.error(err);
+        if (err.code == -32002) {
+          localStorage.removeItem("address");
+          window.location.reload();
+        }
         return;
       });
 
@@ -59,7 +62,7 @@ export const getQuoteById = async (id) => {
   return contract.methods.quotes(id).call();
 };
 
-export const add = async (address, content) => {
+export const createNewQuote = async (address, content) => {
   init();
   console.log("ready for add quotes");
 
