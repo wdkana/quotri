@@ -20,7 +20,7 @@ contract Quotri {
 
     constructor() {
         createQuote(
-            "Selamat datang di Quotri: hasil    kan ethereum hanya dengan kutipan"
+            "Selamat datang di Quotri: hasil kan ethereum hanya dengan kutipan"
         );
     }
 
