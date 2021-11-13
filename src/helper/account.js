@@ -57,7 +57,7 @@ export const account_balance = async (self, address) => {
 
 export const add_quote = async (self) => {
   if (localStorage.getItem("address") && self.state.quotes.content) {
-    if (confirm("tambahkan kutipan ini?")) {
+    if (window.confirm("tambahkan kutipan ini?")) {
       try {
         await createNewQuote(
           localStorage.getItem("address"),
@@ -85,3 +85,7 @@ export const get_quote = async (self) => {
     alert("tidak ada akses!");
   }
 };
+
+export const set_content = (self, value) => {
+  self.setState({ quotes: { content: value } });
+}

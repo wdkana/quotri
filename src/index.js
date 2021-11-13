@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import Quotes from "./quotes.js";
 import Landing from "./landing.js";
 import "./style/index.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const title = "Quotri";
 

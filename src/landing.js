@@ -3,13 +3,9 @@ import Typist from "react-typist";
 import "./style/landing.css";
 import Configs from "./helper/configuration.json";
 import ParticlesBg from "particles-bg";
-import {
-  sign_in,
-  sign_out,
-  add_quote,
-  get_quote,
-  account_balance,
-} from "./helper/account";
+import { sign_in } from "./helper/account";
+import InputQuote from "./components/InputQuote";
+import LoginButton from "./components/loginButton";
 
 class Landing extends Component {
   constructor(props) {
@@ -52,16 +48,10 @@ class Landing extends Component {
     };
   }
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   toEth(balance) {
     return balance.toString().replace(/\B(?=(\d{4})+(?!\d))/, ",");
-  }
-
-  content(value) {
-    this.setState({ quotes: { content: value } });
   }
 
   render() {
@@ -81,16 +71,8 @@ class Landing extends Component {
               <div className="tagline">
                 <Typist>{devDesc}</Typist>
               </div>
-
-              <div className="login">
-                <button
-                  type="button"
-                  onClick={() => sign_in(this)}
-                  className="btn btn-danger btn-lg w-100"
-                >
-                  Coba Sekarang!
-                </button>
-              </div>
+              {/* <InputQuote self={this} /> */}
+              <LoginButton self={this} />
               <div className="icons-social mt-5">
                 <p className="h6 text-muted">
                   powered by <a href="#">dea &amp; team</a>
