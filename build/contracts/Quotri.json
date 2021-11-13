@@ -8147,12 +8147,12 @@
         }
       },
       "links": {},
-      "address": "0xA958C36664Ef50C4766e97ffdF97d87936F45315",
-      "transactionHash": "0x672d9e8c5c7db3517d321e2ba980f6602169858d44e3f4d8871a08c5e940bb69"
+      "address": "0xB51c6C9e0c5CbF15ea3Ff841Fdb665C763F10B17",
+      "transactionHash": "0x0912854429b063c869630caa812345184361f63b5b5bc9169f098b78b527ceb0"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-11T03:18:39.609Z",
+  "updatedAt": "2021-11-12T02:19:00.333Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Quotri: kutipan ethereum",
