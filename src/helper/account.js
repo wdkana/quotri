@@ -14,7 +14,6 @@ export const sign_in = async (self) => {
       },
       () => {
         localStorage.setItem("address", self.state.account.address);
-        window.location.reload();
       }
     );
   } catch (err) {

@@ -24,10 +24,13 @@
     "@openzeppelin/network": "^0.4.3",
     "@truffle/hdwallet-provider": "^1.6.0",
     "@usedapp/core": "^0.5.4",
+    "babel-polyfill": "^6.26.0",
     "contracts": "file:./build/contracts",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "particles-bg": "^2.5.5",
+    "react": "^16.0.2",
+    "react-dom": "^16.0.2",
     "react-scripts": "4.0.3",
+    "react-typist": "^2.0.5",
     "web3-eth-contract": "^1.6.0"
   },
   "resolutions": {
@@ -38,6 +41,7 @@
     "production": [
       ">0.2%",
       "not dead",
+      "not ie <= 11",
       "not op_mini all"
     ],
     "development": [
