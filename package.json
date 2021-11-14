@@ -26,7 +26,7 @@
     "@usedapp/core": "^0.5.4",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^5.1.3",
-    "contracts": "file:./build/contracts",
+    "contracts": "file:./dist",
     "particles-bg": "^2.5.5",
     "react": "^16.10.2",
     "react-bootstrap": "^2.0.2",
