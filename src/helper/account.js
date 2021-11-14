@@ -1,58 +1,30 @@
-import { init, getAccount, getQuoteById, createNewQuote } from "./web3client";
-import Web3 from "web3";
-
-let web3 = new Web3(window.ethereum);
+import {
+  init,
+  getAccount,
+  getQuoteById,
+  createNewQuote,
+  getBalance,
+} from "./web3client";
 
 export const sign_in = async (self) => {
   try {
-    init();
-    const adx = await getAccount();
-    account_balance(adx);
-    self.setState(
-      {
-        account: { address: adx },
-      },
-      () => {
-        localStorage.setItem("address", self.state.account.address);
-      }
-    );
+    const blockchain = await init();
+    if (blockchain) {
+      const address = await getAccount(blockchain);
+      const balance = await getBalance(self, address[0], blockchain);
+      localStorage.setItem("address", address[0]);
+      localStorage.setItem("balance", blockchain.utils.fromWei(balance, 'ether'));
+      window.location.reload();
+    }
   } catch (err) {
-    console.error("sign in ", err);
+    console.error("sign in: ", err);
   }
 };
 
 export const sign_out = (self) => {
-  self.setState(
-    {
-      account: { address: "" },
-      quotes: { content: "" },
-    },
-    () => {
-      localStorage.removeItem("address");
-      window.location.reload();
-    }
-  );
-};
-
-export const account_balance = async (self, address) => {
-  init();
-  try {
-    if (localStorage.getItem("address") !== undefined) {
-      await web3.eth.getBalance(address, (err, balance) => {
-        if (!err)
-          self.setState({
-            account: {
-              ...self.state.account,
-              balance: self.toEth(balance.c[0]),
-            },
-          });
-      });
-    } else {
-      return 0;
-    }
-  } catch (err) {
-    if (err.code == -32002) console.log("waiting for ", err.message);
-  }
+  localStorage.removeItem("address");
+  localStorage.removeItem("balance");
+  window.location.reload();
 };
 
 export const add_quote = async (self) => {
@@ -88,4 +60,4 @@ export const get_quote = async (self) => {
 
 export const set_content = (self, value) => {
   self.setState({ quotes: { content: value } });
-}
+};
