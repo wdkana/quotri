@@ -43,9 +43,19 @@ export const init = async () => {
   return web3;
 };
 
-export const getAccount = () => {
-  console.log("getting account data");
-  return web3.eth.accounts[0];
+export const getAccount = async (block) => {
+  const account = block.eth.getAccounts(function (error, result) {
+    if (!error) return result[0];
+  });
+
+  return account;
+};
+
+export const getBalance = async (address, block) => {
+  const balance = block.eth.getBalance(address, function (error, result) {
+    if (!error) return result;
+  });
+  return balance;
 };
 
 export const getQuoteById = async (id) => {

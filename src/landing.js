@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import Typist from "react-typist";
-import "./style/landing.css";
 import Configs from "./helper/configuration.json";
 import ParticlesBg from "particles-bg";
-import { sign_in } from "./helper/account";
-import InputQuote from "./components/InputQuote";
 import LoginButton from "./components/loginButton";
-
+import Dashboard from "./components/dashboard";
+import "./style/landing.css";
 class Landing extends Component {
   constructor(props) {
     super(props);
@@ -39,26 +37,17 @@ class Landing extends Component {
       bgStyle: {},
       icons: Configs.icons || [],
       account: {
-        address: "",
+        address: localStorage.getItem("address"),
         balance: 0,
-      },
-      quotes: {
-        content: "",
       },
     };
   }
 
   componentDidMount() {}
 
-  toEth(balance) {
-    return balance.toString().replace(/\B(?=(\d{4})+(?!\d))/, ",");
-  }
-
   render() {
     const { appClass, bgStyle, backgroundMode, devIntro, devDesc, icons } =
       this.state;
-    const { balance } = this.state.account;
-    const { content } = this.state.quotes;
 
     return (
       <div className={appClass} style={bgStyle}>
@@ -73,6 +62,7 @@ class Landing extends Component {
               </div>
               {/* <InputQuote self={this} /> */}
               <LoginButton self={this} />
+              <Dashboard self={this} />
               <div className="icons-social mt-5">
                 <p className="h6 text-muted">
                   powered by <a href="#">dea &amp; team</a>
