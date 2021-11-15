@@ -4,6 +4,8 @@ import Configs from "./helper/configuration.json";
 import ParticlesBg from "particles-bg";
 import LoginButton from "./components/loginButton";
 import Dashboard from "./components/dashboard";
+import { sign_out } from "./helper/account";
+
 import "./style/landing.css";
 class Landing extends Component {
   constructor(props) {
@@ -65,7 +67,10 @@ class Landing extends Component {
               <Dashboard self={this} />
               <div className="icons-social mt-5">
                 <p className="h6 text-muted">
-                  powered by <a href="#">dea &amp; team</a>
+                  powered by{" "}
+                  <a href="" onClick={() => sign_out()}>
+                    dea &amp; team
+                  </a>
                 </p>
               </div>
             </div>
