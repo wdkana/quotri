@@ -17,7 +17,7 @@ const Dashboard = ({ self }) => {
 
   const myBalance = async () => {
     try {
-      await show_balance(self, getAddress);
+      if (getBalance === 0) await show_balance(self, getAddress);
       setBalance(self.state.account.balance);
       setShowBalance(!showBalance);
     } catch (e) {
