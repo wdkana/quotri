@@ -51,7 +51,7 @@ export const getAccount = async (block) => {
   return account;
 };
 
-export const getBalance = async (self, address, block) => {
+export const getBalance = async (address, block) => {
   const balance = block.eth.getBalance(address, function (error, result) {
     if (!error) return result;
   });

@@ -6,14 +6,12 @@ import {
   getBalance,
 } from "./web3client";
 
-export const sign_in = async (self) => {
+export const sign_in = async () => {
   try {
     const blockchain = await init();
     if (blockchain) {
       const address = await getAccount(blockchain);
-      const balance = await getBalance(self, address[0], blockchain);
       localStorage.setItem("address", address[0]);
-      localStorage.setItem("balance", blockchain.utils.fromWei(balance, 'ether'));
       window.location.reload();
     }
   } catch (err) {
@@ -21,10 +19,21 @@ export const sign_in = async (self) => {
   }
 };
 
-export const sign_out = (self) => {
+export const sign_out = () => {
   localStorage.removeItem("address");
-  localStorage.removeItem("balance");
   window.location.reload();
+};
+
+export const show_balance = async (self, address) => {
+  try {
+    const blockchain = await init();
+    const balance = await getBalance(address, blockchain);
+    self.setState({
+      account: { balance: blockchain.utils.fromWei(balance, "ether") },
+    });
+  } catch (e) {
+    console.error('show balance: ', e)
+  }
 };
 
 export const add_quote = async (self) => {

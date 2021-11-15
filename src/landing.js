@@ -38,7 +38,7 @@ class Landing extends Component {
       icons: Configs.icons || [],
       account: {
         address: localStorage.getItem("address"),
-        balance: localStorage.getItem("balance"),
+        balance: 0,
       },
     };
   }
@@ -62,7 +62,7 @@ class Landing extends Component {
               </div>
               {/* <InputQuote self={this} /> */}
               <LoginButton self={this} />
-              <Dashboard />
+              <Dashboard self={this} />
               <div className="icons-social mt-5">
                 <p className="h6 text-muted">
                   powered by <a href="#">dea &amp; team</a>

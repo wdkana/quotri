@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
-const Dashboard = (props) => {
+import { show_balance } from "../../helper/account";
+const Dashboard = ({ self }) => {
+  const [showBalance, setShowBalance] = useState(false);
   const [getAddress, setAddress] = useState("");
-  const [getBalance, setBalance] = useState("");
+  const [getBalance, setBalance] = useState(0);
 
   useEffect(() => {
     if (
@@ -10,24 +12,42 @@ const Dashboard = (props) => {
       localStorage.getItem("address") !== undefined
     ) {
       setAddress(localStorage.getItem("address"));
-      setBalance(localStorage.getItem("balance"));
     }
-  });
+  }, []);
+
+  const myBalance = async () => {
+    try {
+      await show_balance(self, getAddress);
+      setBalance(self.state.account.balance);
+      setShowBalance(!showBalance);
+    } catch (e) {
+      console.error("myBalance ", e);
+    }
+  };
 
   return (
     <div style={{ width: "100%", marginTop: "10px" }}>
       <span style={{ fontSize: "20px" }}>Info Akun</span>
       <Table striped hover variant="dark" responsive={"xl"}>
         <thead>
-          <tr style={{ fontSize: "18px" }}>
+          <tr style={{ fontSize: "20" }}>
             <th>Alamat Blockchain</th>
             <th>Saldo Ethereum</th>
           </tr>
         </thead>
         <tbody>
-          <tr style={{ fontSize: "12px" }}>
+          <tr style={{ fontSize: "16px" }}>
             <td>{getAddress}</td>
-            <td>{getBalance} Eth</td>
+            <td>
+              <div>
+                {showBalance ? getBalance + " ETH" : "xx,xx ETH"}
+                <i
+                  className={showBalance ? "fa fa-eye-slash" : "fa fa-eye"}
+                  onClick={() => myBalance()}
+                  style={{ marginLeft: 2, fontSize: "20px", float: "right" }}
+                ></i>
+              </div>
+            </td>
           </tr>
         </tbody>
       </Table>

@@ -51,7 +51,7 @@ export default function LoginButton(self) {
         <Modal.Footer>
           <Button
             type="button"
-            onClick={() => sign_in(self.self)}
+            onClick={() => sign_in()}
             className="btn btn-danger btn-lg w-100"
           >
             Masuk
