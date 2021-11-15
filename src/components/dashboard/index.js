@@ -37,13 +37,17 @@ const Dashboard = ({ self }) => {
         </thead>
         <tbody>
           <tr style={{ fontSize: "16px" }}>
-            <td>{getAddress}</td>
+            <td>{getAddress ? getAddress : "login required"}</td>
             <td>
               <div>
-                {showBalance ? getBalance + " ETH" : "xx,xx ETH"}
+                {showBalance
+                  ? getBalance
+                  : getAddress !== ""
+                  ? "xx,xx ETH"
+                  : "login required"}
                 <i
                   className={showBalance ? "fa fa-eye-slash" : "fa fa-eye"}
-                  onClick={() => myBalance()}
+                  onClick={() => (getAddress ? myBalance() : null)}
                   style={{ marginLeft: 2, fontSize: "20px", float: "right" }}
                 ></i>
               </div>

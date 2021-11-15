@@ -25,14 +25,18 @@ export const sign_out = () => {
 };
 
 export const show_balance = async (self, address) => {
+  if (!address) {
+    return;
+  }
   try {
     const blockchain = await init();
     const balance = await getBalance(address, blockchain);
+
     self.setState({
       account: { balance: blockchain.utils.fromWei(balance, "ether") },
     });
   } catch (e) {
-    console.error('show balance: ', e)
+    console.error("show balance: ", e);
   }
 };
 
