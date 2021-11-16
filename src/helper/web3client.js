@@ -90,3 +90,26 @@ export const createNewQuote = async (address, content) => {
       console.log("kutipan berhasil ditambahkan");
     });
 };
+
+export const getDapp = async (setAddress) => {
+  provider
+    .request({ method: "eth_requestAccounts" })
+    .then((accounts) => {
+      setAddress(accounts[0]);
+      localStorage.setItem("address", accounts[0]);
+      console.log("accounts[0] =>", accounts[0])
+    })
+    .catch((err) => {
+      if (err.code == -32002) {
+        localStorage.removeItem("address");
+        window.location.reload();
+      }
+      return;
+    });
+
+  provider.on("accountsChanged", (new_accounts) => {
+    setAddress(new_accounts[0]);
+    localStorage.setItem("address", new_accounts[0]);
+    console.log("changed account to new_accounts[0]", new_accounts[0]);
+  });
+};
