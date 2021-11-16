@@ -1,6 +1,5 @@
-// SPDX-License-Identifier: GPL-3.0
-
-pragma solidity ^0.8.9;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.4.22 <0.9.0;
 
 /**
  * @title Quotri
@@ -18,9 +17,9 @@ contract Quotri {
 
     mapping(uint256 => Quotes) public quotes;
 
-    constructor() {
+    constructor() public{
         createQuote(
-            "Selamat datang di Quotri: hasil    kan ethereum hanya dengan kutipan"
+            "Selamat datang di Quotri: hasil kan ethereum hanya dengan kutipan"
         );
     }
 
