@@ -33,7 +33,7 @@ export const show_balance = async (self, address) => {
     const balance = await getBalance(address, blockchain);
 
     self.setState({
-      account: { balance: blockchain.utils.fromWei(balance, "ether") },
+      account: { ...self.state.account, balance: blockchain.utils.fromWei(balance, "ether") },
     });
   } catch (e) {
     console.error("show balance: ", e);

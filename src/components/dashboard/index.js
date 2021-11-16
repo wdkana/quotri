@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { show_balance } from "../../helper/account";
+import { getDapp } from "../../helper/web3client";
 const Dashboard = ({ self }) => {
   const [showBalance, setShowBalance] = useState(false);
   const [getAddress, setAddress] = useState("");
@@ -15,9 +16,11 @@ const Dashboard = ({ self }) => {
     }
   }, []);
 
+  getDapp(setAddress)
+
   const myBalance = async () => {
     try {
-      await show_balance(self, getAddress);
+      if (getBalance === 0) await show_balance(self, getAddress);
       setBalance(self.state.account.balance);
       setShowBalance(!showBalance);
     } catch (e) {
@@ -41,7 +44,7 @@ const Dashboard = ({ self }) => {
             <td>
               <div>
                 {showBalance
-                  ? getBalance
+                  ? `${getBalance} ETH`
                   : getAddress !== ""
                   ? "xx,xx ETH"
                   : "login required"}
